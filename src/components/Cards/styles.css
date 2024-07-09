@@ -23,3 +23,8 @@
   .my-card p {
     margin-bottom:auto;
   }
+
+  .rupee-symbol {
+    font-size: 2em; /* Adjust the size as needed */
+    font-weight: bold;
+  }

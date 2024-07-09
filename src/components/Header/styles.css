@@ -1,7 +1,7 @@
 .navbar {
     position: sticky;
     padding: 0.75rem 1.5rem;
-    background-color: var(--theme);
+    background-color:rgb(34, 51, 199);
     display: flex;
     justify-content: space-between;
     align-items: center;

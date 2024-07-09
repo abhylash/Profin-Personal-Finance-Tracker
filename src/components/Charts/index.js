@@ -2,11 +2,15 @@ import React from 'react';
 import { Line, Pie } from '@ant-design/charts';
 
 function ChartComponent({ sortedTransactions }) {
-  // Prepare data for Line chart
-  const data = sortedTransactions.map((item) => ({
-    date: item.date,
-    amount: item.amount,
-  }));
+  // Calculate running balance for Line chart
+  let runningBalance = 0;
+  const data = sortedTransactions.map((item) => {
+    runningBalance += item.type === 'income' ? item.amount : -item.amount;
+    return {
+      date: item.date,
+      balance: runningBalance,
+    };
+  });
 
   // Prepare data for Pie chart
   const spendingData = sortedTransactions
@@ -18,52 +22,40 @@ function ChartComponent({ sortedTransactions }) {
 
   // Consolidate spending data by tag
   const newSpendings = spendingData.reduce((acc, item) => {
-    const { tag, amount } = item;
-    const existingItem = acc.find((el) => el.tag === tag);
+    const existingItem = acc.find((el) => el.tag === item.tag);
     if (existingItem) {
-      existingItem.amount += amount;
+      existingItem.amount += item.amount;
     } else {
-      acc.push({ tag, amount });
+      acc.push({ tag: item.tag, amount: item.amount });
     }
     return acc;
   }, []);
 
-
-  const config = {
+  const lineConfig = {
     data: data,
     width: 500,
     autoFit: false,
     xField: 'date',
-    yField: 'amount',
+    yField: 'balance',
   };
 
-  const spendingConfig = {
+  const pieConfig = {
     data: newSpendings,
     width: 500,
     angleField: 'amount',
     colorField: 'tag',
   };
 
-  let chartInstance, pieChartInstance; // Variables to hold chart instances
-
   return (
     <div className="charts-wrapper">
       <div className="chart-container">
         <h2 style={{ marginTop: 0 }}>Your Analytics</h2>
-        <Line
-          {...config}
-          className="line-chart"
-          onReady={(chartInstance) => (chartInstance = chartInstance)}
-        />
+        <Line {...lineConfig} className="line-chart" />
       </div>
 
       <div className="pie-chart-container">
-      <h2 style={{ marginTop: 0 }}>Your Spendings</h2>
-        <Pie
-          {...spendingConfig}
-          className="pie-chart"
-          onReady={(pieChart) => (pieChartInstance = pieChart)}
-        />
+        <h2 style={{ marginTop: 0 }}>Your Spendings</h2>
+        <Pie {...pieConfig} className="pie-chart" />
       </div>
     </div>
   );
