@@ -1,0 +1,83 @@
+/* styles.css */
+
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Container for search input and select dropdown */
+  .search-filter-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style for the search input */
+  .search-filter-container input {
+    padding: 8px 12px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: 14px;
+    width: 200px;
+    transition: all 0.3s ease;
+  }
+  
+  .search-filter-container input:focus {
+    border-color: #40a9ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    outline: none;
+  }
+  
+  /* Style for the select dropdown */
+  .select-input {
+    min-width: 150px;
+  }
+  
+  .select-input .ant-select-selector {
+    height: 38px !important;
+    display: flex;
+    align-items: center;
+    border-radius: 4px !important;
+  }
+  
+  /* Ant Design Table Styles */
+  .ant-table {
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ant-table-thead > tr > th {
+    background-color: #fafafa;
+    font-weight: bold;
+    border-bottom: 2px solid #e8e8e8;
+  }
+  
+  .ant-table-tbody > tr > td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  /* Table row hover effect */
+  .ant-table-tbody > tr:hover > td {
+    background-color: #fafafa;
+  }
+  
+  /* Style for table pagination */
+  .ant-pagination {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border-top: 1px solid #f0f0f0;
+    border-radius: 0 0 8px 8px;
+  }
+  
